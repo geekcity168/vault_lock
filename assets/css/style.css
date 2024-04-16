@@ -1,0 +1,393 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+main {
+    margin: 16px !important;
+    min-height: 100vh;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    padding-right: 20px;
+    padding-left: 16px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.navbar-brand {
+    margin-left: 10px;
+}
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-toggler {
+    margin-right: 10px;
+}
+
+.collapse {
+    margin-left: 26px;
+}
+
+.dropdown-menu {
+    margin-left: 26px !important;
+    width: 280px;
+}
+
+.welcome-container {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.welcome-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #075eaa;
+}
+
+.o-icon img {
+    width: 0.9em;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.container-middle {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.image-banner {
+    flex: 1;
+    min-width: 40%;
+}
+
+.image-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.description-text {
+    flex: 1;
+    padding: 0 20px;
+}
+
+
+@media (max-width: 768px) {
+    .container-middle {
+        flex-direction: column;
+    }
+
+    .description-text {
+        padding: 20px 0;
+    }
+}
+
+.description-text h3{
+    color: #07637a;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#optionWindow {
+    display: none;
+    position: fixed;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+#optionWindow ul {
+    list-style: none;
+    padding: 0;
+}
+
+#optionWindow li {
+    margin: 5px 0;
+    padding: 6px;
+    cursor: pointer;
+}
+
+#optionWindow li:hover {
+    background-color: rgba(5, 92, 192, 0.2); /* Bluish transparent background */
+}
+
+.login-container {
+    width: 420px;
+    margin: auto;
+    margin-top: 26px;
+    border: solid 1px #045aa0;
+    padding: 16px;
+    border-radius: 16px;
+}
+.status-bar {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    align-items: center;
+    position: fixed;
+    top: 90px;
+    left: 26px;
+}
+
+.status-message {
+    display: flex;
+    align-items: center;
+}
+
+.status-message i {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+#logMessage {
+    margin-left: 6px;
+}
+
+main .profile-page {
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile-container {
+    width: 40%;
+    padding: 16px;
+    background-color: #f5f5f5;
+}
+ .vaults-container {
+    width: 60%;
+    padding: 16px;
+    background-color: #f5f5f5; 
+}
+
+@media (max-width: 768px) {
+    .profile-container, .vaults-container {
+        width: 100%; 
+    }
+}
+
+.pp-container {
+    height: 80px;
+    width: 80px;
+    margin-top: 10px;
+}
+
+.pp-container img  {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user-profiles {
+    padding: 16px;
+    padding-left: 24px;
+    width: 90%;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.user-profiles h4 {
+    margin-top: 16px;
+    color: #045aa0;
+}
+
+#userEmail {
+    color: rgb(255, 153, 0);
+}
+
+#username i {
+    cursor: pointer;
+}
+
+.user-profiles i {
+    cursor: pointer;
+}
+
+.vaults-cont {
+    width: 98%;
+    height: 92%;
+    border-radius: 10px;
+    background-color: #f2f6fc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-inline {
+    display: flex;
+}
+
+.collapse li a {
+    color: #bae2f1;
+}
+
+
+.mini-cont {
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mini-cont:hover {
+    animation: shake 0.8s ease infinite;
+}
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.top-elements {
+    margin-top: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mini-cont-icon {
+    height: 90px;
+    width: 150px;
+}
+
+.mini-cont-icon img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#vaultCount {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.span-name {
+    text-align: center;
+
+}
+
+#documentCount {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.display-container {
+    margin: auto;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.vault {
+    height: 100%;
+    width: 100%;
+}
+
+#vaultName {
+    height: 100px;
+    width: 100px;
+    background-color: #045aa0;
+    color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+.vault-data {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 16px;
+}
+
+.add-items {
+    display: inline-block;
+    margin-left: 36px;
+    vertical-align: bottom;
+}
+
+.popup-overlay {
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#editPopup {
+    position: fixed;
+    background-color: #eef3ef;
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.create-vault-popup-overlay {
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#createVaultContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 36px;
+    display: none;
+}

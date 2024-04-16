@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.rtl.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.rtl.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.min.css.map">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <title>Personal Account | Vault Lock</title>
+</head>
+<body>
+    <main>
+        <nav class="navbar navbar-dark bg-dark">
+            
+            <a class="navbar-brand" href="index.html"><img src="assets/img/encryption-logo.webp" alt="">Vault Lock</a>
+            <button class="navbar-toggler" type="button" id="navbarToggler" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account Settings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="login.html">Login</a>
+                        <a class="dropdown-item" onclick="openAccountOptions()">Create Account</a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="login-container">
+            <h3 class="text-center mb-4">Create Account</h3>
+            <form id="signupForm" onsubmit="validateForm(event)">
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="fullname" placeholder="Enter your full name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    <div id="passwordStrength"></div> <!-- Password strength indicator -->
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="agreeTerms">
+                    <label class="form-check-label" for="agreeTerms">I agree to the terms and conditions</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+        </div>
+    </main>
+    <!--Sign up log messages displayed here-->
+    <div class="status-bar" id="statusBar">
+        <div class="status-message">
+            <i class="fas fa-check-circle text-success"></i> <!-- Success tick icon -->
+            <span id="logMessage"></span>
+        </div>
+    </div>
+    <div class="overlay" onclick="closeAccountOptions()"></div>
+    <!--Sign up options-->
+    <div id="optionWindow">
+        Select the type of account you want to Create
+        <ul>
+            <li onclick="openSignupPersonal()">Personal Account</li>
+            <li onclick="openSignupBusiness()">Business Account</li>
+        </ul>
+    </div>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+    
+            var fullName = document.getElementById('fullname').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+    
+            // Check if any field is empty
+            if (fullName === '' || email === '' || password === '') {
+                displayMessage("Please fill in all the required fields", false);
+                return false;
+            }
+    
+            // Check if email is in correct format
+            var emailRegex = /\S+@\S+\.\S+/;
+            if (!emailRegex.test(email)) {
+                displayMessage("Invalid email address", false);
+                return false;
+            }
+    
+            // Check password strength
+            var passwordStrength = calculatePasswordStrength(password);
+            displayPasswordStrength(passwordStrength);
+    
+            // If password is weak
+            if (passwordStrength < 25) {
+                displayMessage("Password strength " + passwordStrength + "%. Very weak", false);
+                return false;
+            } else if (passwordStrength < 50) {
+                displayMessage("Password strength " + passwordStrength + "%. Weak", false);
+                return false;
+            } else if (passwordStrength < 75) {
+                displayMessage("Password strength " + passwordStrength + "%. Strong", false);
+                return false;
+            } else {
+                displayMessage("Password strength " + passwordStrength + "%. Very strong", true);
+                
+                // Prepare data to send to the server
+                var userData = {
+                    fullname: fullName,
+                    email: email,
+                    password: password
+                };
+    
+                // Send data to the server using AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "php/signup_process.php", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.send(JSON.stringify(userData));
+    
+                // Redirect to profile page after 5 seconds
+                setTimeout(function() {
+                    window.location.href = "profile-page.html";
+                }, 5000);
+    
+                return false;
+            }
+        }
+    
+        function calculatePasswordStrength(password) {
+            var strength = 0;
+            var regexList = [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9]/];
+            regexList.forEach(function (regex) {
+                if (regex.test(password)) {
+                    strength++;
+                }
+            });
+            var passwordLength = password.length;
+            if (passwordLength > 7) {
+                strength++;
+            }
+            return strength * 20;
+        }
+    
+        function displayPasswordStrength(strength) {
+            var passwordStrengthElement = document.getElementById('passwordStrength');
+            passwordStrengthElement.innerHTML = 'Password strength: ' + strength + '%';
+        }
+    
+        function displayMessage(message, success) {
+            var statusBar = document.getElementById('statusBar');
+            var logMessage = document.getElementById('logMessage');
+            logMessage.innerHTML = message;
+            statusBar.style.display = 'flex';
+            if (success) {
+                statusBar.classList.remove('bg-danger');
+                statusBar.classList.add('bg-success');
+            } else {
+                statusBar.classList.remove('bg-success');
+                statusBar.classList.add('bg-danger');
+            }
+        }
+    </script>
+    
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.bundle.js.map"></script>
+    <script src="assets/js/bootstrap.bundle.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js.map"></script>
+    <script src="assets/js/bootstrap.esm.js"></script>
+    <script src="assets/js/bootstrap.esm.js.map"></script>
+    <script src="assets/js/bootstrap.esm.min.js"></script>
+    <script src="assets/js/bootstrap.js.map"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js.map"></script>
+    <script src="assets/js/all.min.js"></script>
+</body>
+</html>

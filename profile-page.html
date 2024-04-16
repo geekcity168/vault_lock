@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.rtl.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.rtl.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.css.map">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-reboot.min.css.map">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <title>Profile | Vault Lock</title>
+</head>
+<body>
+    <main>
+        <nav class="navbar navbar-dark bg-dark">
+            
+            <a class="navbar-brand" href="index.html"><img src="assets/img/encryption-logo.webp" alt="">Vault Lock</a>
+            <button class="navbar-toggler" type="button" id="navbarToggler" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account Settings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="login.html">Login</a>
+                        <a class="dropdown-item" onclick="openAccountOptions()">Create Account</a>
+                        <a class="dropdown-item" onclick="logout()">
+                            <i class="fas fa-power-off ml-2"></i>
+                            Log out 
+                            
+                        </a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="profile-page">
+            <div class="profile-container">
+                <!--User profile displayed here-->
+                <h3>Profile information</h3>
+                <div class="user-profiles">
+                    <div class="pp-container">
+                        <img src="assets/img/pp.png" id="profilePicture">
+                    </div>
+                    <h4 id="userFullName">Alice Smith</h4>
+                    <div id="userEmail">someone@example.com</div>
+                    <div>
+                        <span id="userName">Add username</span>
+                        <i class="fas fa-edit edit-icon" onclick="editUsername()"></i>
+                    </div>
+                    <div>
+                        <span id="userPhone">Add phone number</span>
+                        <i class="fas fa-edit edit-icon" onclick="editPhoneNumber()"></i>
+                    </div>
+                    <div>
+                        <span id="userCountry">Kenya (Default)</span>
+                    </div>
+                    <div>
+                        <span id="userGender">Add Gender</span>
+                    </div>
+                    <div id="help-info">
+                        <hr>
+                            <p>You can edit the username and phone number by clicking edit buttons on each sides. Similarly you can click edit profile button to update the whole profile.</p>
+                        <hr>
+                        <input type="file" id="fileInput" style="display: none;">
+                        <button type="button" class="btn btn-outline-primary" onclick="openEditProfile()">Edit profile</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="selectProfilePicture()">Add profile picture</button>
+                    </div>
+                </div>
+            </div>
+            <div class="vaults-container">
+                <h3>Vault L<span class="o-icon"><img src="assets/img/grey-settings.jpg" alt="o"></span>ck</h3>
+                <div class="vaults-cont">
+                    <div class="container-fluid">
+                        <div class="row flex-nowrap">
+                            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                                    <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                                        <span class="fs-5 d-none d-sm-inline">Vaults</span>
+                                    </a>
+                                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link align-middle px-0">
+                                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                                 <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
+                                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                                <li class="w-100">
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Vaults</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Password bank</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Manage Vaults</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Settings</span></a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                                <li class="w-100">
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Account Settings</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Manage Storage</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Journals</span> </a>
+                                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                                <li class="w-100">
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">New</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Tasks</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Reminders</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Manage</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col py-3">
+                                <div class="top-elements">
+                                    <div class="mini-cont">
+                                        <div class="mini-cont-icon">
+                                            <img src="assets/img/enc_002xfc.jpg" alt="">
+                                        </div>
+                                        <div id="vaultCount">0</div>
+                                        <div class="span-name">Active Vaults</div>
+                                    </div>
+                                    <div class="mini-cont">
+                                        <div class="mini-cont-icon">
+                                            <img src="assets/img/enc_doc00Xcvx.jpeg" alt="">
+                                        </div>
+                                        <div id="documentCount">0</div>
+                                        <div class="span-name">Stored Documents</div>
+                                    </div>
+                                    <div class="mini-cont">
+                                        <div class="mini-cont-icon">
+                                            <img src="assets/img/pass_00xcF.jpg" alt="">
+                                        </div>
+                                        <div id="documentCount">0</div>
+                                        <div class="span-name">Saved Passwords</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <hr>
+                                <div class="bottom-elements">
+                                    <div class="display-container">
+                                        <div class="vault">
+                                            <div id="vaultName">
+                                                Sample Vault Application
+                                            </div>
+                                            <div class="vault-data">
+                                                <div>Total size: <span id="vault-size">0 Bytes</span></div>
+                                                <div>Items contained: <span id="vault-items-count">0</span></div>
+                                                <div>Date created: <span id="date-created-vault">01/01/1999</span></div>
+                                            </div>
+                                            <div class="add-items">
+                                                <button type="button" class="btn btn-success" onclick="openCreateVaultPopup()">Create Vault</button>
+                                                <button type="button" class="btn btn-primary">Add items</button>
+                                            </div>
+                                            <hr>
+                                            <table class="table table-dark table-striped">
+                                                <thead>
+                                                    <tr>
+                                                      <th scope="col">#</th>
+                                                      <th scope="col">Vault Name</th>
+                                                      <th scope="col">Date Created</th>
+                                                      <th scope="col">Items Contained</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody id="vaultsTable">
+                                                    
+                                                  </tbody>
+                                            </table>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openEditProfile() {
+            document.querySelector(".popup-overlay").style.display = "flex";
+            document.getElementById("editPopup").style.display = "block"
+        }
+
+        function closeEditPopup() {
+            var response = confirm("Do you want to close the edit window without saving?");
+
+            if (response == true) {
+                document.querySelector(".popup-overlay").style.display = "none";
+                document.getElementById("editPopup").style.display = "none";
+                return false;
+            }
+
+            else {
+                updateProfile();
+            }
+        }
+
+        function updateProfile(event) {
+            event.preventDefault();
+            var username = document.getElementById("username");
+            var phone = document.getElementById("phone");
+            var gender = document.getElementById("genderSelect");
+            var country = document.getElementById("country");
+            var userName = document.getElementById("userName");
+            var userPhone = document.getElementById("userPhone");
+            var userCountry = document.getElementById("userCountry");
+            var userGender= document.getElementById("userGender");
+
+
+            if (username.value == "" || phone.value == "") {
+                alert("Please update username and phone number");
+                return false;
+            }
+
+            else {
+                alert("Profile updated successfully");
+                document.querySelector(".popup-overlay").style.display = "none";
+                document.getElementById("editPopup").style.display = "none";
+
+                userName.innerHTML = `${username.value}`;
+                userPhone.innerHTML = `${phone.value}`;
+                userCountry.innerHTML = `${country.value}`;
+                userGender.innerHTML = `${gender.value}`;
+
+            }
+        }
+
+        function selectProfilePicture() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var file = this.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    document.getElementById('profilePicture').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+    </script>
+
+    <div class="overlay" onclick="closeAccountOptions()"></div>
+    <!--Sign up options-->
+    <div id="optionWindow">
+        Select the type of account you want to Create
+        <ul>
+            <li onclick="openSignupPersonal()">Personal Account</li>
+            <li onclick="openSignupBusiness()">Business Account</li>
+        </ul>
+    </div>
+
+    <!--Edit Information Popup-->
+    <div class="popup-overlay" onclick="closeEditPopup()"></div>
+    <div id="editPopup">
+        <h3>Personal profile</h3>
+        <p>Edit account profile</p>
+        <form action="" onsubmit="updateProfile(event)">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone number</label>
+                <input type="number" class="form-control" id="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="mb-3">
+               <label for="genderSelect" class="form-label">Gender</label>
+               <select class="form-control" id="genderSelect">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Nationality</label>
+                <select class="form-control" id="country">
+                    <option value="">Select Country</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Uganda">Uganda</option>
+                    <option value="Tanzania">Tanzania</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Canada">Canada</option>
+                    <option value="India">India</option>
+                    <option value="Germany">Germany</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="France">France</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Spain">Spain</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="China">China</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Finland">Finland</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Iran">Iran</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="Israel">Israel</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Ireland">Ireland</option>
+                </select>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="agreeTerms">
+                <label class="form-check-label" for="agreeTerms">I agree to the terms and conditions</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Information</button>
+        </form>
+    </div>
+
+    <!--Create vault popup-->
+    <div class="create-vault-popup-overlay" onclick="closeCreateVaultPopup()"></div>
+    <div id="createVaultContainer">
+        <h3>Create new vault</h3>
+        <form action="" onsubmit="createVault(event)">
+            <div class="mb-3">
+                <label for="vault-name" class="form-label">Vault name</label>
+                <input type="text" class="form-control" id="vault-name" placeholder="Enter vault name">
+            </div>
+            <div class="mb-3">
+                <label for="vault-password" class="form-label">Vault password</label>
+                <input type="password" class="form-control" id="vault-password" placeholder="Set vault password">
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="vaultType" id="generalVault" value="general">
+                        <label class="form-check-label" for="generalVault">
+                            General vault
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="vaultType" id="documentsOnly" value="documents">
+                        <label class="form-check-label" for="documentsOnly">
+                            Documents only
+                        </label>
+                    </div>
+                </div>
+                <div style="display: none;">Allocated size: <span id="allocatedSize">0 MB</span></div>
+                <button type="submit" class="btn btn-primary">Create Vault</button>
+            </div>
+        </form>
+    </div>
+    <script>
+
+        var createVaultOverlay = document.querySelector(".create-vault-popup-overlay");
+        var createVaultPopup = document.getElementById("createVaultContainer");
+
+        function openCreateVaultPopup(){
+            createVaultOverlay.style.display = "block";
+            createVaultPopup.style.display = "block";
+        }
+
+        function closeCreateVaultPopup() {
+            var vaultResponse = confirm("Are you sure you want to exit without saving vault?");
+
+            if (response = true) {
+                createVaultOverlay.style.display = "none";
+                createVaultPopup.style.display = "none";
+                return false;
+            }
+
+            else {
+                createVault(event);
+            }
+        }
+    </script>
+    <script>
+        function createVault(event) {
+            event.preventDefault();
+            var vaultName = document.getElementById('vault-name').value.trim();
+            var vaultPassword = document.getElementById('vault-password').value.trim();
+    
+            if (vaultName === "" || vaultPassword === "") {
+                alert("Vault name and password are required.");
+                return;
+            }
+    
+            if (!isStrongPassword(vaultPassword)) {
+                alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+                return;
+            }
+    
+            var vaultType = document.querySelector('input[name="vaultType"]:checked').value;
+    
+            var allocatedSize;
+            if (vaultType === "general") {
+                allocatedSize = 5 * 1024; // 5 GB in MB
+            } else if (vaultType === "documents") {
+                allocatedSize = 2 * 1024; // 2 GB in MB
+            }
+    
+            document.getElementById('allocatedSize').textContent = allocatedSize + " MB";
+            alert("Vault created successfully");
+    
+            // Add vault details to the table
+            var tableBody = document.getElementById("vaultsTable");
+            var rowCount = tableBody.rows.length;
+            var newRow = tableBody.insertRow(rowCount);
+    
+            var cellIndex = newRow.insertCell(0);
+            var cellName = newRow.insertCell(1);
+            var cellDate = newRow.insertCell(2);
+            var cellItemCount = newRow.insertCell(3);
+    
+            cellIndex.textContent = rowCount + 1;
+            cellName.textContent = vaultName;
+            cellDate.textContent = new Date().toLocaleDateString();
+            cellItemCount.textContent = 0;
+    
+            createVaultOverlay.style.display = "none";
+            createVaultPopup.style.display = "none";
+
+            // Update vault count
+            var vaultCount = document.getElementById('vaultCount');
+            vaultCount.textContent = parseInt(vaultCount.textContent) + 1;
+        }
+    
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('vault-password');
+            var passwordIcon = document.getElementById('passwordVisibility');
+    
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                passwordIcon.classList.remove("fa-eye");
+                passwordIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                passwordIcon.classList.remove("fa-eye-slash");
+                passwordIcon.classList.add("fa-eye");
+            }
+        }
+    
+        function isStrongPassword(password) {
+            // Regular expression for strong password
+            var strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,])(?=.*[^\s]).{8,}$/;
+            return strongPasswordRegex.test(password);
+        }
+    </script>
+    
+    
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.bundle.js.map"></script>
+    <script src="assets/js/bootstrap.bundle.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js.map"></script>
+    <script src="assets/js/bootstrap.esm.js"></script>
+    <script src="assets/js/bootstrap.esm.js.map"></script>
+    <script src="assets/js/bootstrap.esm.min.js"></script>
+    <script src="assets/js/bootstrap.js.map"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js.map"></script>
+    <script src="assets/js/all.min.js"></script>
+</body>
+</html>
